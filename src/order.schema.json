@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "the schema for order message of vct-pro-webapp",
+  "properties": {
+    "request_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "type": {
+      "const": "order_entry_request"
+    },
+    "symbol": {
+      "enum": ["OXRP_JPY", "OBTC_JPY", "OETH_JPY"]
+    },
+    "order_type": {
+      "enum": ["limit", "market"]
+    },
+    "side": {
+      "enum": ["buy", "sell"]
+    },
+    "price": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 10,
+      "multipleOf": 10
+    },
+    "vc_token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "type",
+    "symbol",
+    "order_type",
+    "side",
+    "price",
+    "quantity",
+    "vc_token"
+  ],
+  "additionalProperties": false
+}
